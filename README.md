@@ -13,6 +13,13 @@ Other Clojure projects I love:
 - GorillaREPL
 - CIDER in emacs
 
+Language Tools to keep in mind:
+- MPS
+- Moose
+- Glamorous tookit
+- Antlr 4
+- Lexx, yacc, bison
+
 Language features I would like to explore:
 - small memory footprint and fast startup
 
