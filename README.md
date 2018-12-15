@@ -2,6 +2,7 @@
 Let's create a LISP inspired by Clojure.
 
 We'll be creating at least one language, possibly more.  We are primarily exploring.
+
 Things I loved about Clojure:
 - use of [] to help the syntax instead of scheme's inner (()).
 - persistent immutable structures: lists, vectors, maps and sets.
@@ -22,4 +23,5 @@ Possible low-level implementation languages
 - CommonLISP
 - Pharo
 - D
+
 We shall not C++.
