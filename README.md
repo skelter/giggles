@@ -12,6 +12,7 @@ Things I loved about Clojure:
 Other Clojure projects I love:
 - GorillaREPL
 - CIDER in emacs
+- I gave up on pixelang.
 
 Language Tools to keep in mind:
 - MPS
@@ -22,13 +23,14 @@ Language Tools to keep in mind:
 
 Language features I would like to explore:
 - small memory footprint and fast startup
+- Clojure syntax and semantics
 
-
-Possible low-level implementation languages
+Possible low-level implementation languages and components
 - Go
 - Rust
 - CommonLISP
 - Pharo
 - D
+- LLVM
 
 We shall not C++.
