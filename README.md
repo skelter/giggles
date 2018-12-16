@@ -32,5 +32,6 @@ Possible low-level implementation languages and components
 - Pharo
 - D
 - LLVM
+- ChickenScheme
 
 We shall not C++.
