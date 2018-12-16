@@ -1,0 +1,74 @@
+#+TITLE: Giggles in Rust
+
+* Journal
+** [2018-12-16 Sun]
+   Last night I started work on the idea.
+   I found a crate that is an EDN implementation.
+   I am now looking at how to loop while reading from a stream.
+   Rust idioms are not functional, which annoys me.  To read a line
+   from a stream the [[https://doc.rust-lang.org/std/io/fn.stdin.html][examples]] typically create a mutable buffer
+   and then call functions to load from the stream into the buffer.
+
+   There is no =do {} while/continue=.
+
+   I got to the point where I can read a line and parse it.
+   I had to hit Ctrl-D after each line.
+   Baby steps.
+   Rust is a strange animal, but I think it is finding potential
+   problems early and is heavy-handed with its opinion.
+   I ran into problems with borrowing in a loop, and eventually
+   coded it differently and it turned out cleaner.
+
+   I think the next thing to look at is [[https://kkawakam.github.io/rustyline/rustyline/][rustyline]] which
+   should help improve the loop.
+
+#+BEGIN_SRC shell
+➜  rust git:(master) ✗  cargo run          
+    Finished dev [unoptimized + debuginfo] target(s) in 0.01s                                           
+     Running `target/debug/giggles`
+Hello, world!
+test
+Some(Ok(Symbol("test")))
+None
+^C
+➜  rust git:(master) ✗  cargo run
+   Compiling giggles v0.1.0 (file:///home/skelter/work/giggles/rust)                                    
+warning: unused variable: `line`
+  --> src/main.rs:20:16
+   |
+20 |             Ok(line) => parse_line(buffer),
+   |                ^^^^ help: consider using `_line` instead
+   |
+   = note: #[warn(unused_variables)] on by default
+
+warning: variable does not need to be mutable
+  --> src/main.rs:14:9
+   |
+14 |     let mut repl_continue = true;
+   |         ----^^^^^^^^^^^^^
+   |         |
+   |         help: remove this `mut`
+   |
+   = note: #[warn(unused_mut)] on by default
+
+    Finished dev [unoptimized + debuginfo] target(s) in 0.31s
+     Running `target/debug/giggles`
+Hello, world!
+hello
+Some(Ok(Symbol("hello")))
+(hello)
+Some(Ok(List([Symbol("hello")])))
+(hello "world")
+Some(Ok(List([Symbol("hello"), String("world")])))
+[1 2 3 4.2]
+Some(Ok(Vector([Integer(1), Integer(2), Integer(3), Float(OrderedFloat(4.2))])))
+{ :name "Bob" :id 42}
+Some(Ok(Map({Keyword("id"): Integer(42), Keyword("name"): String("Bob")})))
+(defn ->circle [{:keys [x y r]}] {:type :circle :x x :y y :r r})
+Some(Ok(List([Symbol("defn"), Symbol("->circle"), Vector([Map({Keyword("keys"): Vector([Symbol("x"), Symbol("y"), Symbol("r")])})]), Map({Keyword("r"): Symbol("r"), Keyword("type"): Keyword("circle"), Keyword("x"): Symbol("x"), Keyword("y"): Symbol("y")})])))
+quit
+Some(Ok(Symbol("quit")))
+^C
+➜  rust git:(master) ✗  
+
+#+END_SRC
