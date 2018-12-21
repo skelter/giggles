@@ -5,3 +5,5 @@ authors = ["skelter"]
 
 [dependencies]
 edn = "0.3.0"
+rustyline = "3.0.0"
+

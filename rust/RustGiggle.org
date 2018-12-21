@@ -72,3 +72,155 @@ Some(Ok(Symbol("quit")))
 ➜  rust git:(master) ✗  
 
 #+END_SRC
+
+** [2018-12-20 Thu]
+ Looking at [[https://kkawakam.github.io/rustyline/rustyline/][rustyline]] .
+ I am not sure what version number to put in the cargo file.
+ Man, it sure is nice having a dependency management system. 
+ (Glares at C++.)
+ I finally figured out its [[https://github.com/kkawakam/rustyline][source url on github]].
+ 
+ It failed to build. Cargo is asking me about something in 
+ rustyline's cargo.toml file about 'editions'. Also, 'editions are unstable.'
+
+ More reading...more learning...
+
+ Ah. Upgrading cargo and rust did the trick.
+ #+BEGIN_SRC shell
+➜  rust git:(master) ✗  rustup self update 
+info: checking for self-updates
+info: downloading self-update
+info: rustup updated successfully to 1.16.0
+➜  rust git:(master) ✗  rustup show       
+Default host: x86_64-unknown-linux-gnu
+
+stable-x86_64-unknown-linux-gnu (default)
+rustc 1.29.1 (b801ae664 2018-09-20)
+➜  rust git:(master) ✗  rustup update
+info: syncing channel updates for 'stable-x86_64-unknown-linux-gnu'
+info: latest update on 2018-12-20, rust version 1.31.1 (b6c32da9b 2018-12-18)
+info: downloading component 'rustc'
+ 77.8 MiB /  77.8 MiB (100 %) 387.2 KiB/s ETA:   0 s                
+info: downloading component 'rust-std'
+ 54.4 MiB /  54.4 MiB (100 %) 342.4 KiB/s ETA:   0 s                
+info: downloading component 'cargo'
+  4.7 MiB /   4.7 MiB (100 %) 572.8 KiB/s ETA:   0 s                
+info: downloading component 'rust-docs'
+  8.5 MiB /   8.5 MiB (100 %) 547.2 KiB/s ETA:   0 s                
+info: removing component 'rustc'
+info: removing component 'rust-std'
+info: removing component 'cargo'
+info: removing component 'rust-docs'
+info: installing component 'rustc'
+info: installing component 'rust-std'
+info: installing component 'cargo'
+info: installing component 'rust-docs'
+info: checking for self-updates
+
+  stable-x86_64-unknown-linux-gnu updated - rustc 1.31.1 (b6c32da9b 2018-12-18)
+
+➜  rust git:(master) ✗  cargo check
+  Downloaded dirs v1.0.4                                                        
+  Downloaded unicode-segmentation v1.2.1                                        
+  Downloaded unicode-width v0.1.5                                               
+  Downloaded utf8parse v0.1.1                                                   
+  Downloaded libc v0.2.45                                                       
+  Downloaded log v0.4.6                                                         
+  Downloaded nix v0.11.0                                                        
+  Downloaded memchr v2.1.2                                                      
+  Downloaded cfg-if v0.1.6                                                      
+  Downloaded version_check v0.1.5                                               
+  Downloaded bitflags v1.0.4                                                    
+   Compiling num-traits v0.2.6                                                  
+   Compiling version_check v0.1.5                                               
+   Compiling libc v0.2.45                                                       
+    Checking void v1.0.2                                                        
+   Compiling nix v0.11.0                                                        
+    Checking bitflags v1.0.4                                                    
+    Checking cfg-if v0.1.6                                                      
+    Checking unicode-segmentation v1.2.1                                        
+    Checking utf8parse v0.1.1                                                   
+    Checking unicode-width v0.1.5                                               
+    Checking log v0.4.6                                                         
+    Checking unreachable v0.1.1                                                 
+   Compiling memchr v2.1.2                                                      
+    Checking dirs v1.0.4                                                        
+    Checking num-traits v0.1.43                                                 
+    Checking ordered-float v0.4.0                                               
+    Checking edn v0.3.0                                                         
+    Checking rustyline v3.0.0                                                   
+    Checking giggles v0.1.0 (/home/skelter/work/giggles/rust)                   
+warning: unused variable: `line`                                                
+  --> src/main.rs:20:16                                                         
+   |                                                                            
+20 |             Ok(line) => parse_line(buffer),                                
+   |                ^^^^ help: consider using `_line` instead                   
+   |                                                                            
+   = note: #[warn(unused_variables)] on by default                              
+                                                                                
+warning: variable does not need to be mutable                                   
+  --> src/main.rs:14:9                                                          
+   |                                                                            
+14 |     let mut repl_continue = true;                                          
+   |         ----^^^^^^^^^^^^^                                                  
+   |         |                                                                  
+   |         help: remove this `mut`                                            
+   |                                                                            
+   = note: #[warn(unused_mut)] on by default                                    
+                                                                                
+    Finished dev [unoptimized + debuginfo] target(s) in 9.33s                   
+➜  rust git:(master) ✗  
+ #+END_SRC
+
+ Back in the saddle again.
+
+#+BEGIN_SRC 
+➜  rust git:(master) ✗  cargo run  
+   Compiling void v1.0.2                                                        
+   Compiling bitflags v1.0.4                                                    
+   Compiling cfg-if v0.1.6                                                      
+   Compiling utf8parse v0.1.1                                                   
+   Compiling unicode-segmentation v1.2.1                                        
+   Compiling unicode-width v0.1.5                                               
+   Compiling num-traits v0.2.6                                                  
+   Compiling libc v0.2.45                                                       
+   Compiling log v0.4.6                                                         
+   Compiling unreachable v0.1.1                                                 
+   Compiling dirs v1.0.4                                                        
+   Compiling nix v0.11.0                                                        
+   Compiling memchr v2.1.2                                                      
+   Compiling num-traits v0.1.43                                                 
+   Compiling ordered-float v0.4.0                                               
+   Compiling edn v0.3.0                                                         
+   Compiling rustyline v3.0.0                                                   
+   Compiling giggles v0.1.0 (/home/skelter/work/giggles/rust)                   
+warning: unused variable: `line`                                                
+  --> src/main.rs:20:16                                                         
+   |                                                                            
+20 |             Ok(line) => parse_line(buffer),                                
+   |                ^^^^ help: consider using `_line` instead                   
+   |                                                                            
+   = note: #[warn(unused_variables)] on by default                              
+                                                                                
+warning: variable does not need to be mutable                                   
+  --> src/main.rs:14:9                                                          
+   |                                                                            
+14 |     let mut repl_continue = true;                                          
+   |         ----^^^^^^^^^^^^^                                                  
+   |         |                                                                  
+   |         help: remove this `mut`                                            
+   |                                                                            
+   = note: #[warn(unused_mut)] on by default                                    
+                                                                                
+    Finished dev [unoptimized + debuginfo] target(s) in 8.35s                   
+     Running `target/debug/giggles`
+Hello, world!
+#{:fun :times}
+Some(Ok(Set({Keyword("fun"), Keyword("times")})))
+None
+None
+^X^C
+➜  rust git:(master) ✗  
+#+END_SRC
+
+I'm tired.  21:16
