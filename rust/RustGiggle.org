@@ -224,3 +224,7 @@ None
 #+END_SRC
 
 I'm tired.  21:16
+** [2018-12-26 Wed]
+Replaced the io loop with readline.
+
+Next to start trying to eval.
