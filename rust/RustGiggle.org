@@ -228,3 +228,8 @@ I'm tired.  21:16
 Replaced the io loop with readline.
 
 Next to start trying to eval.
+
+I am running into problems with the Value enum being private.
+
+Ran into a borrowing problem, and had to use a ref.  I am still
+working on the eval.
