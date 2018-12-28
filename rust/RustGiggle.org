@@ -233,3 +233,18 @@ I am running into problems with the Value enum being private.
 
 Ran into a borrowing problem, and had to use a ref.  I am still
 working on the eval.
+
+next morning: Last night I got it to compile.  I kept hitting Rust
+guardrails.  Committed.  Should soon be time for immutable data structs.
+** [2018-12-27 Thu]
+   Committed last night's work. 
+
+   Looking for immutable persistent data structures. 
+   - https://docs.rs/crate/im/
+   - https://crates.io/crates/im
+
+   Looks like I will have to know ARC's, as well.  That makes sense
+   given Clojure semantics.
+   - https://doc.rust-lang.org/std/sync/struct.Arc.html
+
+   Interest is getting fatigued.
